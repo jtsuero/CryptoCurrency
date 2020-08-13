@@ -1,13 +1,32 @@
 .App {
   text-align: center;
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.currency-container {
+}
+
+.currency {
+  color: rgb(226, 226, 226);
+  padding: 1rem;
+  font-size: 5rem;
+  font-family: 'Audiowide';
+}
+
+.app-logo {
+  font-family: 'Monoton';
+  color: #0ef8f8;
+  font-size: 6.1rem;
+  position: absolute;
+  padding: 5rem;
+  top: 10px;
 }
 
 .App-header {
+  display: flex;
+  flex: 1;
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -18,15 +37,3 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
