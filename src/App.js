@@ -39,7 +39,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
+        <div className="App-container">
           <div className="app-logo">cryptocheck</div>
           <input
             type="text"
@@ -51,7 +51,7 @@ class App extends Component {
             currency={this.state.prices}
             tickerSymbols={this.state.symbols}
           />
-        </header>
+        </div>
       </div>
     );
   }
