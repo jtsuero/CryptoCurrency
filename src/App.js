@@ -8,22 +8,26 @@ class App extends Component {
     super();
     this.state = {
       prices: [],
-      tickerInput: '',
       symbols: [],
+      tickerInput: '',
+      initialCrypto: 'btc,eth',
     };
   }
 
-  getPrices = () => {
+  componentDidMount() {
+    this.getPrices(this.state.initialCrypto);
+  }
+
+  getPrices = tickers => {
     fetch(
-      `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${this.state.tickerInput.toUpperCase()}&tsyms=USD`,
+      `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${tickers}&tsyms=USD`,
     )
       .then(res => res.json())
       .then(result => {
-        let tickerHolder = this.state.tickerInput.toUpperCase().split(',');
+        let tickerHolder = tickers.toUpperCase().split(',');
         let priceHolder = [];
         for (let i = 0; i < tickerHolder.length; i++) {
           priceHolder.push(result[tickerHolder[i]].USD);
-          //js bracket notation
         }
         this.setState({
           prices: priceHolder,
@@ -41,16 +45,18 @@ class App extends Component {
       <div className="App">
         <div className="App-container">
           <div className="app-logo">cryptocheck</div>
+          <Crypto
+            currency={this.state.prices}
+            tickerSymbols={this.state.symbols}
+          />
           <input
             type="text"
             onChange={e => this.getTicker(e)}
             className="input-box"
           />
-          <button onClick={this.getPrices}>Get Prices</button>
-          <Crypto
-            currency={this.state.prices}
-            tickerSymbols={this.state.symbols}
-          />
+          <button onClick={() => this.getPrices(this.state.tickerInput)}>
+            Get Prices
+          </button>
         </div>
       </div>
     );
